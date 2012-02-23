@@ -8,11 +8,11 @@ Open Radar runs at http://openradar.appspot.com.
 
 # Dependencies
 
-* [httplib2](http://code.google.com/p/httplib2)
-* [lxml](http://lxml.de/)
-* [python-oauth2](https://github.com/simplegeo/python-oauth2)
-* [simpleauth](https://github.com/crhym3/simpleauth)
-* [simplejson])(https://github.com/simplejson/simplejson)
+* [httplib2 0.7.2](http://pypi.python.org/pypi/httplib2/0.7.2)
+* [lxml 2.3.3](http://pypi.python.org/pypi/lxml/2.3.3)
+* [oauth2 1.5.211](https://github.com/simplegeo/python-oauth2)
+* [simpleauth 0.1.2](http://pypi.python.org/pypi/simpleauth/0.1.2)
+* [simplejson 2.3.2])(http://pypi.python.org/pypi/simplejson/2.3.2)
 
 # License
 
