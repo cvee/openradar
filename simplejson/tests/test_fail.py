@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-import simplejson as S
+import simplejson as json
 
 # Fri Dec 30 18:57:26 2005
 JSONDOCS = [
@@ -66,11 +66,26 @@ class TestFail(TestCase):
         for idx, doc in enumerate(JSONDOCS):
             idx = idx + 1
             if idx in SKIPS:
-                S.loads(doc)
+                json.loads(doc)
                 continue
             try:
-                S.loads(doc)
-            except ValueError:
+                json.loads(doc)
+            except json.JSONDecodeError:
                 pass
             else:
+                #self.fail("Expected failure for fail{0}.json: {1!r}".format(idx, doc))
                 self.fail("Expected failure for fail%d.json: %r" % (idx, doc))
+
+    def test_array_decoder_issue46(self):
+        # http://code.google.com/p/simplejson/issues/detail?id=46
+        for doc in [u'[,]', '[,]']:
+            try:
+                json.loads(doc)
+            except json.JSONDecodeError, e:
+                self.assertEquals(e.pos, 1)
+                self.assertEquals(e.lineno, 1)
+                self.assertEquals(e.colno, 1)
+            except Exception, e:
+                self.fail("Unexpected exception raised %r %s" % (e, e))
+            else:
+                self.fail("Unexpected success parsing '[,]'")
